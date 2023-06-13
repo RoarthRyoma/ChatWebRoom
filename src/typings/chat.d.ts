@@ -1,0 +1,59 @@
+declare namespace Chat {
+
+	interface Chat {
+		avatar?: string
+		dateTime: string
+		text: string
+		inversion?: boolean
+		isleft: boolean
+		error?: boolean
+		loading?: boolean
+		markDownIt?: boolean
+		nickName?: string
+		conversationOptions?: ConversationRequest | null
+		requestOptions: { prompt: string; options?: ConversationRequest | null }
+	}
+
+	interface History {
+		title: string
+		isEdit: boolean
+		uuid: number
+		chatType: string
+	}
+
+	interface ChatSession {
+		uuid: number
+		chatType:string
+		roomId:string
+		nickName: string
+		data: Chat[]
+	}
+
+	interface ChatState {
+		active: number | null
+		usingContext: boolean;
+		history: History[]
+		chat: ChatSession[]
+	}
+
+	interface ConversationRequest {
+		conversationId?: string
+		parentMessageId?: string
+	}
+
+	interface ConversationResponse {
+		conversationId: string
+		detail: {
+			choices: { finish_reason: string; index: number; logprobs: any; text: string }[]
+			created: number
+			id: string
+			model: string
+			object: string
+			usage: { completion_tokens: number; prompt_tokens: number; total_tokens: number }
+		}
+		id: string
+		parentMessageId: string
+		role: string
+		text: string
+	}
+}
