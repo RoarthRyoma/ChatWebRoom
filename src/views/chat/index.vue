@@ -87,8 +87,6 @@ async function onDiscussing(roomId: string) {
   if (!message || message.trim() === '')
     return
 
-  controller = new AbortController()
-
   addChat(
     +uuid,
     chatType,
@@ -97,6 +95,7 @@ async function onDiscussing(roomId: string) {
       dateTime: new Date().toLocaleString(),
       text: message,
       inversion: true,
+      hasAvatar: true,
       isleft: false,
       error: false,
       conversationOptions: null,
@@ -136,6 +135,7 @@ async function onConversation() {
       dateTime: new Date().toLocaleString(),
       text: message,
       inversion: true,
+      hasAvatar: false,
       isleft: true,
       error: false,
       conversationOptions: null,
@@ -162,6 +162,7 @@ async function onConversation() {
       text: '',
       loading: true,
       inversion: false,
+      hasAvatar: false,
       isleft: true,
       error: false,
       conversationOptions: null,
@@ -195,6 +196,7 @@ async function onConversation() {
                 dateTime: new Date().toLocaleString(),
                 text: lastText + (data.text ?? ''),
                 inversion: false,
+                hasAvatar: false,
                 isleft: true,
                 error: false,
                 loading: true,
@@ -260,6 +262,7 @@ async function onConversation() {
         dateTime: new Date().toLocaleString(),
         text: errorMessage,
         inversion: false,
+        hasAvatar: false,
         isleft: true,
         error: true,
         loading: false,
@@ -299,6 +302,7 @@ async function onRegenerate(index: number) {
       dateTime: new Date().toLocaleString(),
       text: '',
       inversion: false,
+      hasAvatar: false,
       isleft: true,
       error: false,
       loading: true,
@@ -332,6 +336,7 @@ async function onRegenerate(index: number) {
                 dateTime: new Date().toLocaleString(),
                 text: lastText + (data.text ?? ''),
                 inversion: false,
+                hasAvatar: false,
                 isleft: true,
                 error: false,
                 loading: true,
@@ -378,6 +383,7 @@ async function onRegenerate(index: number) {
         dateTime: new Date().toLocaleString(),
         text: errorMessage,
         inversion: false,
+        hasAvatar: false,
         isleft: true,
         error: true,
         loading: false,
@@ -596,6 +602,7 @@ onUnmounted(() => {
                 :date-time="item.dateTime"
                 :text="item.text"
                 :inversion="item.inversion"
+                :has-avatar="item.hasAvatar"
                 :isleft="item.isleft"
                 :error="item.error"
                 :loading="item.loading"

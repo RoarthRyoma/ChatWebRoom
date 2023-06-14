@@ -7,6 +7,7 @@ import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { debounce } from '@/utils/functions/debounce'
 import { t } from '@/locales'
 import socket from '@/utils/request/socket'
+import { copyToClip } from '@/utils/copy'
 
 const { isMobile } = useBasicLayout()
 
@@ -60,14 +61,13 @@ function isActive(uuid: number) {
 }
 
 const copyRoomId = async (index: number) => {
-  try {
-    globalThis.console.log('copy roomId: ', chatStore.$state.chat[index].roomId)
-    await navigator.clipboard.writeText(chatStore.$state.chat[index].roomId)
+  const roomId = chatStore.$state.chat[index].roomId
+  copyToClip(roomId).then(() => {
     message.success(t('common.copySuccess'))
-  }
-  catch (err) {
+  }).catch((err) => {
+    globalThis.console.log('copy failed: ', err)
     message.error(t('common.copyFail'))
-  }
+  })
 }
 </script>
 

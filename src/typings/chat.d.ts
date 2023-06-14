@@ -5,6 +5,7 @@ declare namespace Chat {
 		dateTime: string
 		text: string
 		inversion?: boolean
+		hasAvatar: boolean
 		isleft: boolean
 		error?: boolean
 		loading?: boolean

@@ -1,5 +1,6 @@
-import { createServer } from 'http'
+import { createServer } from 'node:http'
 import express from 'express'
+
 // import cors from 'cors'
 import type { RequestProps } from './types'
 import type { ChatMessage } from './chatgpt'
@@ -16,28 +17,6 @@ const router = express.Router()
 
 app.use(express.static('public'))
 app.use(express.json())
-
-// app.use(cors({
-//   credentials: true,
-//   origin: 'http://localhost:1002',
-// }))
-
-declare global {
-  namespace Express {
-    interface Response {
-      sends: (err: Error | string, status?: number) => void
-    }
-  }
-}
-
-// 注册全局中间件 封装所有的res下的send方法
-app.use((req, res, next) => {
-  // status默认400 成功200、失败400
-  res.sends = (err, status = 400) => {
-    res.status(status).send(err instanceof Error ? err.message : err)
-  }
-  next()
-})
 
 app.all('*', (_, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
