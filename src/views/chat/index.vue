@@ -56,7 +56,6 @@ const GPTnickName = 'GPT'
 const chatTypeRef = ref<string | undefined>((chatStore.getChatHistoryByCurrentActive)?.chatType)
 const activeUuid = ref((chatStore.getChatHistoryByCurrentActive)?.uuid)
 const currentChat = chatStore.getChatFromSession(activeUuid.value)!
-const currentAvatar = userStore.$state.userInfo.avatar
 const theme = computed(() => appStore.theme === 'auto' ? 'light' : appStore.theme)
 
 // 未知原因刷新页面，loading 状态不会重置，手动重置
@@ -79,6 +78,7 @@ function handleSubmit() {
 async function onDiscussing(roomId: string) {
   const message = prompt.value
   const chatType = CHAT_FRIENDS
+  const currentAvatar = userStore.$state.userInfo.avatar
   // const roomId = chatStore.$state.chat[0].roomId // 假设你正在与第一个聊天室进行对话
 
   if (loading.value)

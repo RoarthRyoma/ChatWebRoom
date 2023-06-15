@@ -16,6 +16,9 @@ module.exports = {
           '50%': { 'background-color': 'transparent' },
         },
       },
+      maxWidth: {
+        9: '9rem',
+      },
     },
   },
   plugins: [],

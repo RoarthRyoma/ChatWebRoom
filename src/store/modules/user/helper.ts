@@ -18,7 +18,7 @@ export function defaultSetting(): UserState {
     userInfo: {
       avatar: lnkDragon,
       name: 'Guess',
-      description: 'Star on <a href="https://github.com/Chanzhaoyu/chatgpt-bot" class="text-blue-500" target="_blank" >Github</a>',
+      description: 'Star on <a href="https://github.com/RoarthRyoma/ChatWebRoom" class="text-blue-500" target="_blank" >Github</a>',
     },
   }
 }

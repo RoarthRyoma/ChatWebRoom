@@ -87,22 +87,20 @@ const copyRoomId = async (index: number) => {
             :class="isActive(item.uuid) && ['border-[#4b9e5f]', 'bg-neutral-100', 'text-[#4b9e5f]', 'dark:bg-[#24272e]', 'dark:border-[#4b9e5f]', 'pr-5']"
             @click="handleSelect(item)"
           >
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 py-1 pl-2">
-                <span>
-                  <SvgIcon v-if="item.chatType === CHAT_GPT" icon="ri:message-3-line" />
-                  <SvgIcon v-if="item.chatType === CHAT_FRIENDS" icon="ri:discuss-line" />
-                </span>
-                <div class="relative flex-1 overflow-hidden break-all text-ellipsis whitespace-nowrap">
-                  <NInput
-                    v-if="item.isEdit"
-                    v-model:value="item.title" size="tiny"
-                    @keypress="handleEnter(item, false, $event)"
-                  />
-                  <span v-else>{{ item.title }}</span>
-                </div>
+            <div class="flex items-center gap-3 py-1 pl-2">
+              <span>
+                <SvgIcon v-if="item.chatType === CHAT_GPT" icon="ri:message-3-line" />
+                <SvgIcon v-if="item.chatType === CHAT_FRIENDS" icon="ri:discuss-line" />
+              </span>
+              <div class="relative flex-1 overflow-hidden break-all max-w-[9rem] text-ellipsis whitespace-nowrap">
+                <NInput
+                  v-if="item.isEdit"
+                  v-model:value="item.title" size="tiny"
+                  @keypress="handleEnter(item, false, $event)"
+                />
+                <span v-else>{{ item.title }}</span>
               </div>
-              <div v-if="isActive(item.uuid)" class="z-10 flex visible right-1">
+              <div v-if="isActive(item.uuid)" class="absolute z-10 flex visible right-5">
                 <template v-if="item.isEdit">
                   <button class="p-1" @click="handleEdit(item, false, $event)">
                     <SvgIcon icon="ri:save-line" />

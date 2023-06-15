@@ -79,10 +79,10 @@ function handleJoinRoomResponse(data: { code: number; roomId: string; roomName: 
         <NTabPane name="Online" :tab="$t('chat.withOnline')">
           <NForm :model:value="form" label-width="100px">
             <NFormItem :label="$t('chat.labelRoomId')">
-              <NInput v-model:value="form.roomId" />
+              <NInput v-model:value="form.roomId" placeholder="请输入(创建房间不需要输入房间号)" />
             </NFormItem>
             <NFormItem :label="$t('chat.labelRoomName')">
-              <NInput v-model:value="form.roomName" />
+              <NInput v-model:value="form.roomName" placeholder="请输入(加入房间不需要输入房间名)" />
             </NFormItem>
             <NFormItem :label="$t('chat.labelNickName')">
               <NInput v-model:value="form.nickName" />
